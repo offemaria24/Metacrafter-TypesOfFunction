@@ -1,10 +1,10 @@
 # Project: Create and Mint Token
 
-# Paramio Token (RhuzzCoin)
+# Wilem Token (WilemOffemaria)
 
 ## Overview
 
-Paramio Token (RhuzzCoin) is an ERC20-compliant token smart contract written in Solidity. The contract extends the OpenZeppelin ERC20 contract, providing functionalities for creating, burning, and transferring tokens. Additionally, it includes a modifier (`onlyOwner`) to restrict certain functions to the contract owner.
+Wilem Token (WilemOffemaria) is an ERC20-compliant token smart contract written in Solidity. The contract extends the OpenZeppelin ERC20 contract, providing functionalities for creating, burning, and transferring tokens. Additionally, it includes a modifier (`onlyOwner`) to restrict certain functions to the contract owner.
 
 ## License
 
