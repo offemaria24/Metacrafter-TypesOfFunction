@@ -1,24 +1,30 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.26;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+contract EzyCoin{
 
-contract Wilem is ERC20, Ownable {
-    constructor() ERC20("Wilem", "WO") Ownable(msg.sender) {
-        _mint(msg.sender, 1000000 * 10 ** decimals());
+    string public coinName = "EzyCoin";
+    string public coinSymbol = "Ezy";
+    uint public coinSupply = 0;
+
+    mapping (address => uint)public coinBalances;
+
+    function mintCoins(address to, uint amount) public{
+        coinSupply += amount;
+        coinBalances[to] += amount;
     }
 
-    function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
+    function burnCoins(address from, uint amount)public {
+        require(coinBalances[from] >= amount, "Low Coin Balance to burn");
+        coinSupply -= amount;
+        coinBalances[from] -= amount;
     }
 
-    function transfer(address to, uint256 amount) public override returns (bool) {
-        _transfer(msg.sender, to, amount);
-        return true;
-    }
-
-    function burn(uint256 amount) public {
-        _burn(msg.sender, amount);
+    function transferCoins(address from, address reciepient, uint amount)public {
+        require(coinBalances[from]>= amount,"Not Enough Coin to transfer");
+        coinBalances[from] -= amount;
+        coinBalances[reciepient] += amount;
+        coinSupply -= amount;
     }
 }
